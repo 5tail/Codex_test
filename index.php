@@ -22,9 +22,18 @@
 <div style="margin-top:20px;">
 <label><input type="checkbox" id="hideTime"> 隱藏計時</label>
 <select id="scrambleType">
-<option value="3">3x3</option>
-<option value="2">2x2</option>
-<option value="4">4x4</option>
+  <option value="3">3x3</option>
+  <option value="2">2x2</option>
+  <option value="4">4x4</option>
+  <option value="5">5x5</option>
+  <option value="6">6x6</option>
+  <option value="7">7x7</option>
+  <option value="pyra">Pyraminx</option>
+  <option value="mega">Megaminx</option>
+  <option value="skewb">Skewb</option>
+  <option value="sq1">Square-1</option>
+  <option value="clock">Clock</option>
+
 </select>
 <label><input type="checkbox" id="oneHour"> 1小時模式</label>
 </div>
@@ -44,7 +53,9 @@ let ready = false;
 let inspectionStart = 0;
 let inspectionInterval = null;
 let penalty = '';
-let scrambleType = 3;
+
+let scrambleType = '3';
+
 
 function pad(n, width){
   let s = n+''; if(s.length < width) s = '0'.repeat(width - s.length)+s; return s;
@@ -59,23 +70,6 @@ function formatTime(ms){
   return `${pad(m,2)}:${pad(s,2)}.${pad(cs,3)}`;
 }
 
-function generateScramble(){
-  scrambleType = parseInt(scrambleTypeSelect.value,10);
-  const moves = ['U','D','L','R','F','B'];
-  const mods = ['', "'", '2'];
-  let len = 20;
-  if(scrambleType===2) len = 11;
-  if(scrambleType===4) len = 40;
-  let lastMove = '';
-  const out = [];
-  for(let i=0;i<len;i++){
-    let move = moves[Math.floor(Math.random()*moves.length)];
-    while(move[0]===lastMove[0]) move = moves[Math.floor(Math.random()*moves.length)];
-    lastMove = move;
-    move += mods[Math.floor(Math.random()*mods.length)];
-    out.push(move);
-  }
-  scrambleDisplay.textContent = out.join(' ');
 }
 
 generateScramble();
