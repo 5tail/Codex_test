@@ -1,0 +1,14 @@
+# AGENTS.md
+
+This file records a summary of repository changes and a short description of each Pull Request.
+
+## Pull Request Summaries
+
+### PR: Convert timer page to PHP
+- Renamed the static `index.html` to `index.php` and added all timer and scramble functionality.
+- Implemented SpeedStacks-style timer logic with hold detection, +2/DNF penalties, and an optional one-hour mode.
+- Added scramble generation for 2x2, 3x3, and 4x4 puzzles and a toggle to hide the running time during solves.
+
+
+### PR: Create readme
+- Added an empty `readme` placeholder file.
