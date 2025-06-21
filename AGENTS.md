@@ -16,3 +16,6 @@ This file records a summary of repository changes and a short description of eac
 ### PR: Add AGENTS summary
 - Created `AGENTS.md` to track pull request descriptions and change history.
 - Included initial summary for converting the timer to PHP and creating the placeholder readme.
+
+### PR: Document timer usage
+- Replaced the placeholder readme with a short overview of `index.php`, local server instructions, and note that all code lives in one file.
