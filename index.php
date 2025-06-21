@@ -71,8 +71,6 @@ function formatTime(ms){
 }
 
 function generateScramble(){
-  const map = { '2': '222', '3': '333', '4': '444' };
-  const puzzle = map[scrambleTypeSelect.value];
   if(puzzle){
     scrambleDisplay.textContent = cubejs.scramble(puzzle);
   } else {
@@ -130,11 +128,11 @@ document.body.addEventListener('keydown', e => {
     if(!holding && !timerInterval){
       holding = true;
       ready = false;
-      statusDisplay.textContent = '\u9ec3';
+      statusDisplay.textContent = '\u25A0';
       statusDisplay.className = 'yellow';
       holdTimeout = setTimeout(() => {
         ready = true;
-        statusDisplay.textContent = '\u7da0';
+        statusDisplay.textContent = '\u25A0';
         statusDisplay.className = 'green';
       }, 800);
     } else if(timerInterval){
