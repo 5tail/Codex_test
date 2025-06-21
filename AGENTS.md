@@ -12,3 +12,7 @@ This file records a summary of repository changes and a short description of eac
 
 ### PR: Create readme
 - Added an empty `readme` placeholder file.
+
+### PR: Add AGENTS summary
+- Created `AGENTS.md` to track pull request descriptions and change history.
+- Included initial summary for converting the timer to PHP and creating the placeholder readme.
