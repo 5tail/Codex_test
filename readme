@@ -1,1 +1,11 @@
+# Cubing Timer Overview
 
+`index.php` provides a simple timer for puzzle solving with built-in scramble generation. Load it through any PHP-enabled server to track your solves.
+
+Run locally with:
+
+```
+php -S localhost:8000
+```
+
+Then open `http://localhost:8000/index.php` in your browser. All code and markup live in that single file for easier testing and contributions.
