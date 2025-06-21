@@ -37,6 +37,7 @@
 </select>
 <label><input type="checkbox" id="oneHour"> 1小時模式</label>
 </div>
+<script src="https://unpkg.com/cubejs/lib/cube.min.js"></script>
 <script>
 const timerDisplay = document.getElementById('timer');
 const statusDisplay = document.getElementById('status');
@@ -54,7 +55,6 @@ let inspectionStart = 0;
 let inspectionInterval = null;
 let penalty = '';
 
-let scrambleType = '3';
 
 
 function pad(n, width){
@@ -70,6 +70,14 @@ function formatTime(ms){
   return `${pad(m,2)}:${pad(s,2)}.${pad(cs,3)}`;
 }
 
+function generateScramble(){
+  const map = { '2': '222', '3': '333', '4': '444' };
+  const puzzle = map[scrambleTypeSelect.value];
+  if(puzzle){
+    scrambleDisplay.textContent = cubejs.scramble(puzzle);
+  } else {
+    scrambleDisplay.textContent = '';
+  }
 }
 
 generateScramble();
