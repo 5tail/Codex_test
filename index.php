@@ -55,7 +55,6 @@ let inspectionStart = 0;
 let inspectionInterval = null;
 let penalty = '';
 
-let scrambleType = '3';
 
 
 function pad(n, width){
@@ -72,9 +71,6 @@ function formatTime(ms){
 }
 
 function generateScramble(){
-  scrambleType = scrambleTypeSelect.value;
-  const map = { '2': '222', '3': '333', '4': '444' };
-  const puzzle = map[scrambleType];
   if(puzzle){
     scrambleDisplay.textContent = cubejs.scramble(puzzle);
   } else {
