@@ -36,3 +36,8 @@ This file records a summary of repository changes and a short description of eac
 ### PR: Add time mode selector
 - Replaced the one-hour checkbox with a dropdown to choose 10 minutes, 1 hour, or infinite time.
 - Updated `formatTime()` in `timer.js` to respect the selected limit.
+
+### PR: Improve inspection countdown
+- Display the remaining time during inspection, updating every 100 ms.
+- Highlight 8–12 seconds in yellow and 12–15 seconds in red.
+- Show “DNF” after 17 seconds and reset the countdown whenever a new scramble is generated.
