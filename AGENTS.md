@@ -41,3 +41,40 @@ This file records a summary of repository changes and a short description of eac
 - Display the remaining time during inspection, updating every 100 ms.
 - Highlight 8–12 seconds in yellow and 12–15 seconds in red.
 - Show “DNF” after 17 seconds and reset the countdown whenever a new scramble is generated.
+
+### PR: Test inspection timing
+- Confirmed `startInspection()` resets `inspectionStart` for every solve.
+- Updated `computePenalty()` to return the applied penalty and added `getPenalty()` for tests.
+- Added Node-based tests ensuring penalties use the new `inspectionStart` and trigger at the 15/17 s marks.
+
+### PR: Add manual start and countdown display
+- Introduced a separate countdown element to avoid overlapping the status square.
+- Countdown uses whole seconds with red/yellow highlights.
+- Scrambles and inspection start only after pressing the spacebar, with a prompt shown between solves.
+
+### PR: Fix countdown flow
+- Hide scrambles until the spacebar is pressed
+- Countdown shows 15 down to 0 in integers
+- Clear status and scramble when prompting to start
+
+### PR: Add countdown placeholder
+- Display "請按一下空白鍵開始" in `#countdown` on page load
+- Center countdown text vertically with `line-height`
+### PR: Fallback scramble generation
+- Ensure `generateScramble()` works even if cubejs doesn't provide a scramble function
+- Try `getRandomScramble()` then `scramble()` and show a default message if both fail
+
+### PR: Built-in scramble fallback
+- Added `simpleScramble()` to produce basic cube scrambles when cubejs is missing
+- Updated `generateScramble()` to use the built-in version if external functions fail
+- Extended node tests to check scramble generation without cubejs
+
+### PR: Improve cross-browser start
+- Broadened spacebar detection to work in browsers lacking `code` support
+- Guarded `generateScramble()` against missing `cubejs` without referencing an undefined variable
+
+### PR: Local cubejs copy
+- Bundled cubejs locally as `cubejs/cube.min.js` so scrambles work offline
+- Updated `index.php` to load the local script
+- Documented offline usage in the readme
+
