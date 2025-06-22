@@ -19,9 +19,6 @@ let penalty = '';
 let scrambleType = '3';
 let waiting = true;
 
-function showPrompt() {
-  countdownDisplay.textContent = '\u8acb\u6309\u4e00\u4e0b\u7a7a\u767d\u9375\u958b\u59cb';
-  countdownDisplay.className = '';
 
 }
 
@@ -74,15 +71,14 @@ export function generateScramble() {
         scramble = cubejs.getRandomScramble(puzzle);
       } else if (typeof cubejs?.scramble === 'function') {
         scramble = cubejs.scramble(puzzle);
-      } else {
-        throw new Error('no scramble function');
+
       }
     } catch (e) {
-      scramble = 'Scramble not available';
+      scramble = '';
     }
-  } else {
-    scramble = 'Scramble not available';
+    if (!scramble) scramble = simpleScramble(puzzle);
   }
+  if (!scramble) scramble = 'Scramble not available';
   scrambleDisplay.textContent = scramble;
 }
 
@@ -93,6 +89,7 @@ export function startInspection() {
   clearInterval(inspectionInterval);
   inspectionInterval = setInterval(() => {
     const elapsed = (Date.now() - inspectionStart) / 1000;
+
 
     if (elapsed >= 17) {
       countdownDisplay.textContent = 'DNF';
