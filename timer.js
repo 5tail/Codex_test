@@ -22,6 +22,7 @@ let waiting = true;
 function showPrompt() {
   countdownDisplay.textContent = '\u8acb\u6309\u4e00\u4e0b\u7a7a\u767d\u9375\u958b\u59cb';
   countdownDisplay.className = '';
+
 }
 
 function pad(n, width) {
@@ -86,7 +87,6 @@ export function startInspection() {
   clearInterval(inspectionInterval);
   inspectionInterval = setInterval(() => {
     const elapsed = (Date.now() - inspectionStart) / 1000;
-    const remaining = Math.ceil(15 - elapsed);
 
     if (elapsed >= 17) {
       countdownDisplay.textContent = 'DNF';
