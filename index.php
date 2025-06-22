@@ -35,7 +35,11 @@
   <option value="clock">Clock</option>
 
 </select>
-<label><input type="checkbox" id="oneHour"> 1小時模式</label>
+<select id="timeMode">
+  <option value="600000">10分鐘</option>
+  <option value="3600000">1小時</option>
+  <option value="Infinity">自由</option>
+</select>
 </div>
 <script src="https://unpkg.com/cubejs/lib/cube.min.js"></script>
 <script type="module">

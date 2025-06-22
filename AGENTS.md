@@ -32,3 +32,7 @@ This file records a summary of repository changes and a short description of eac
 ### PR: Support more scrambles
 - Extended `generateScramble()` in `timer.js` to cover 5x5–7x7 and non-cube puzzles.
 - Updated the readme to note cubejs provides scrambles for common WCA events.
+
+### PR: Add time mode selector
+- Replaced the one-hour checkbox with a dropdown to choose 10 minutes, 1 hour, or infinite time.
+- Updated `formatTime()` in `timer.js` to respect the selected limit.
