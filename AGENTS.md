@@ -28,3 +28,7 @@ This file records a summary of repository changes and a short description of eac
 ### PR: Refactor timer script
 - Extracted all timer logic into `timer.js` as an ES module.
 - Imported `generateScramble()` and `startInspection()` in `index.php` to initialize the page.
+
+### PR: Support more scrambles
+- Extended `generateScramble()` in `timer.js` to cover 5x5–7x7 and non-cube puzzles.
+- Updated the readme to note cubejs provides scrambles for common WCA events.

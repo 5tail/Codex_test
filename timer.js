@@ -34,13 +34,32 @@ export function formatTime(ms) {
 
 export function generateScramble() {
   scrambleType = scrambleTypeSelect.value;
-  const map = { '2': '222', '3': '333', '4': '444' };
+  const map = {
+    '2': '222',
+    '3': '333',
+    '4': '444',
+    '5': '555',
+    '6': '666',
+    '7': '777',
+    'pyra': 'pyram',
+    'mega': 'minx',
+    'skewb': 'skewb',
+    'sq1': 'sq1',
+    'clock': 'clock'
+  };
+
   const puzzle = map[scrambleType];
+  let scramble = '';
   if (puzzle) {
-    scrambleDisplay.textContent = cubejs.scramble(puzzle);
+    try {
+      scramble = cubejs.scramble(puzzle);
+    } catch (e) {
+      scramble = 'Scramble not available';
+    }
   } else {
-    scrambleDisplay.textContent = '';
+    scramble = 'Scramble not available';
   }
+  scrambleDisplay.textContent = scramble;
 }
 
 export function startInspection() {
