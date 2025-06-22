@@ -88,6 +88,7 @@ export function startInspection() {
   inspectionInterval = setInterval(() => {
     const elapsed = (Date.now() - inspectionStart) / 1000;
 
+
     if (elapsed >= 17) {
       countdownDisplay.textContent = 'DNF';
       countdownDisplay.className = 'big-red';
