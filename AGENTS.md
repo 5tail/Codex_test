@@ -47,16 +47,4 @@ This file records a summary of repository changes and a short description of eac
 - Updated `computePenalty()` to return the applied penalty and added `getPenalty()` for tests.
 - Added Node-based tests ensuring penalties use the new `inspectionStart` and trigger at the 15/17 s marks.
 
-### PR: Add manual start and countdown display
-- Introduced a separate countdown element to avoid overlapping the status square.
-- Countdown uses whole seconds with red/yellow highlights.
-- Scrambles and inspection start only after pressing the spacebar, with a prompt shown between solves.
 
-### PR: Fix countdown flow
-- Hide scrambles until the spacebar is pressed
-- Countdown shows 15 down to 0 in integers
-- Clear status and scramble when prompting to start
-
-### PR: Add countdown placeholder
-- Display "請按一下空白鍵開始" in `#countdown` on page load
-- Center countdown text vertically with `line-height`
