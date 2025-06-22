@@ -70,7 +70,13 @@ export function generateScramble() {
   let scramble = '';
   if (puzzle) {
     try {
-      scramble = cubejs.scramble(puzzle);
+      if (typeof cubejs?.getRandomScramble === 'function') {
+        scramble = cubejs.getRandomScramble(puzzle);
+      } else if (typeof cubejs?.scramble === 'function') {
+        scramble = cubejs.scramble(puzzle);
+      } else {
+        throw new Error('no scramble function');
+      }
     } catch (e) {
       scramble = 'Scramble not available';
     }
@@ -87,7 +93,6 @@ export function startInspection() {
   clearInterval(inspectionInterval);
   inspectionInterval = setInterval(() => {
     const elapsed = (Date.now() - inspectionStart) / 1000;
-
 
     if (elapsed >= 17) {
       countdownDisplay.textContent = 'DNF';
