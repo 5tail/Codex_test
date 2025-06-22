@@ -5,7 +5,7 @@ const statusDisplay = document.getElementById('status');
 const scrambleDisplay = document.getElementById('scramble');
 const hideTimeCheck = document.getElementById('hideTime');
 const scrambleTypeSelect = document.getElementById('scrambleType');
-const oneHourCheck = document.getElementById('oneHour');
+const timeModeSelect = document.getElementById('timeMode');
 
 let timerInterval = null;
 let startTime = 0;
@@ -24,7 +24,17 @@ function pad(n, width) {
 }
 
 export function formatTime(ms) {
-  const max = oneHourCheck.checked ? 3600000 : 600000;
+  let max;
+  switch (timeModeSelect.value) {
+    case '600000':
+      max = 600000;
+      break;
+    case '3600000':
+      max = 3600000;
+      break;
+    default:
+      max = Infinity;
+  }
   if (ms > max) ms = max;
   const m = Math.floor(ms / 60000);
   const s = Math.floor((ms % 60000) / 1000);
