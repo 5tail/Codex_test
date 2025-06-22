@@ -67,10 +67,6 @@ export function generateScramble() {
   let scramble = '';
   if (puzzle) {
     try {
-      if (typeof cubejs?.getRandomScramble === 'function') {
-        scramble = cubejs.getRandomScramble(puzzle);
-      } else if (typeof cubejs?.scramble === 'function') {
-        scramble = cubejs.scramble(puzzle);
 
       }
     } catch (e) {
@@ -152,10 +148,7 @@ export function computePenalty() {
 
 export function getPenalty() {
   return penalty;
-}
 
-document.body.addEventListener('keydown', e => {
-  if (e.code === 'Space' && !e.repeat) {
     if (waiting && !timerInterval) {
       waiting = false;
       generateScramble();
@@ -177,7 +170,7 @@ document.body.addEventListener('keydown', e => {
 });
 
 document.body.addEventListener('keyup', e => {
-  if (e.code === 'Space') {
+  if (isSpaceKey(e)) {
     if (holding) {
       clearTimeout(holdTimeout);
       holding = false;

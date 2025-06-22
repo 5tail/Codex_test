@@ -43,7 +43,7 @@
   <option value="Infinity">自由</option>
 </select>
 </div>
-<script src="https://unpkg.com/cubejs/lib/cube.min.js"></script>
+<script src="cubejs/cube.min.js"></script>
 <script type="module">
 import './timer.js';
 </script>

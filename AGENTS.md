@@ -46,4 +46,3 @@ This file records a summary of repository changes and a short description of eac
 - Confirmed `startInspection()` resets `inspectionStart` for every solve.
 - Updated `computePenalty()` to return the applied penalty and added `getPenalty()` for tests.
 - Added Node-based tests ensuring penalties use the new `inspectionStart` and trigger at the 15/17 s marks.
-
