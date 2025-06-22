@@ -19,38 +19,7 @@ let penalty = '';
 let scrambleType = '3';
 let waiting = true;
 
-function simpleScramble(puzzle) {
-  const table = {
-    '222': {len: 9, moves: ['R', 'L', 'U', 'D', 'F', 'B']},
-    '333': {len: 20, moves: ['R', 'L', 'U', 'D', 'F', 'B']},
-    '444': {len: 40, moves: ['R', 'L', 'U', 'D', 'F', 'B', 'Rw', 'Lw', 'Uw', 'Dw', 'Fw', 'Bw']},
-    '555': {len: 60, moves: ['R', 'L', 'U', 'D', 'F', 'B', 'Rw', 'Lw', 'Uw', 'Dw', 'Fw', 'Bw']},
-    '666': {len: 80, moves: ['R', 'L', 'U', 'D', 'F', 'B', 'Rw', 'Lw', 'Uw', 'Dw', 'Fw', 'Bw']},
-    '777': {len: 100, moves: ['R', 'L', 'U', 'D', 'F', 'B', 'Rw', 'Lw', 'Uw', 'Dw', 'Fw', 'Bw']}
-  };
-  const spec = table[puzzle];
-  if (!spec) return 'Scramble not available';
-  const suff = ['', "'", '2'];
-  const moves = spec.moves;
-  let prev = '';
-  const out = [];
-  for (let i = 0; i < spec.len; i++) {
-    let mv;
-    do {
-      mv = moves[Math.floor(Math.random() * moves.length)];
-    } while (mv[0] === prev[0]);
-    prev = mv;
-    out.push(mv + suff[Math.floor(Math.random() * 3)]);
-  }
-  return out.join(' ');
-}
 
-function showPrompt() {
-  countdownDisplay.textContent = '\u8acb\u6309\u4e00\u4e0b\u7a7a\u767d\u9375\u958b\u59cb';
-  countdownDisplay.className = '';
-  scrambleDisplay.textContent = '';
-  statusDisplay.textContent = '';
-  statusDisplay.className = '';
 }
 
 function pad(n, width) {
@@ -98,12 +67,7 @@ export function generateScramble() {
   let scramble = '';
   if (puzzle) {
     try {
-      if (typeof window !== 'undefined' && window.cubejs) {
-        if (typeof window.cubejs.getRandomScramble === 'function') {
-          scramble = window.cubejs.getRandomScramble(puzzle);
-        } else if (typeof window.cubejs.scramble === 'function') {
-          scramble = window.cubejs.scramble(puzzle);
-        }
+
       }
     } catch (e) {
       scramble = '';
@@ -121,8 +85,7 @@ export function startInspection() {
   clearInterval(inspectionInterval);
   inspectionInterval = setInterval(() => {
     const elapsed = (Date.now() - inspectionStart) / 1000;
-    let remaining = 15 - Math.floor(elapsed);
-    if (remaining < 0) remaining = 0;
+
 
     if (elapsed >= 17) {
       countdownDisplay.textContent = 'DNF';
@@ -185,14 +148,7 @@ export function computePenalty() {
 
 export function getPenalty() {
   return penalty;
-}
 
-function isSpaceKey(e) {
-  return e.code === 'Space' || e.key === ' ' || e.key === 'Spacebar' || e.keyCode === 32;
-}
-
-document.body.addEventListener('keydown', e => {
-  if (isSpaceKey(e) && !e.repeat) {
     if (waiting && !timerInterval) {
       waiting = false;
       generateScramble();

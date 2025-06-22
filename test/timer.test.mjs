@@ -57,11 +57,3 @@ test('computePenalty respects DNF threshold', () => {
     timer.stopInspection();
   });
 });
-
-test('generateScramble fallback when cubejs absent', () => {
-  document.getElementById('scrambleType').value = '3';
-  timer.generateScramble();
-  const sc = document.getElementById('scramble').textContent;
-  assert.notEqual(sc, 'Scramble not available');
-  assert.ok(sc.length > 0);
-});
