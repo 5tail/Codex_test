@@ -76,17 +76,23 @@ export function startInspection() {
   inspectionStart = Date.now();
   statusDisplay.textContent = '';
   statusDisplay.className = '';
+  clearInterval(inspectionInterval);
   inspectionInterval = setInterval(() => {
-    const t = (Date.now() - inspectionStart) / 1000;
-    if (t >= 8 && t < 12) {
-      statusDisplay.textContent = '8 Seconds';
-      statusDisplay.className = 'big-yellow';
-    } else if (t >= 12 && t < 15) {
-      statusDisplay.textContent = '12 Seconds';
+    const elapsed = (Date.now() - inspectionStart) / 1000;
+    const remaining = 15 - elapsed;
+
+    if (elapsed >= 17) {
+      statusDisplay.textContent = 'DNF';
       statusDisplay.className = 'big-red';
-    } else if (t >= 15) {
-      statusDisplay.textContent = '\u5df2\u8d85\u6642';
-      statusDisplay.className = 'big-red';
+    } else {
+      statusDisplay.textContent = remaining.toFixed(1);
+      if (elapsed >= 12) {
+        statusDisplay.className = 'big-red';
+      } else if (elapsed >= 8) {
+        statusDisplay.className = 'big-yellow';
+      } else {
+        statusDisplay.className = '';
+      }
     }
   }, 100);
 }
@@ -165,5 +171,8 @@ document.body.addEventListener('keyup', e => {
   }
 });
 
-scrambleTypeSelect.addEventListener('change', generateScramble);
+scrambleTypeSelect.addEventListener('change', () => {
+  generateScramble();
+  startInspection();
+});
 
