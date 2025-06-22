@@ -41,3 +41,8 @@ This file records a summary of repository changes and a short description of eac
 - Display the remaining time during inspection, updating every 100 ms.
 - Highlight 8–12 seconds in yellow and 12–15 seconds in red.
 - Show “DNF” after 17 seconds and reset the countdown whenever a new scramble is generated.
+
+### PR: Test inspection timing
+- Confirmed `startInspection()` resets `inspectionStart` for every solve.
+- Updated `computePenalty()` to return the applied penalty and added `getPenalty()` for tests.
+- Added Node-based tests ensuring penalties use the new `inspectionStart` and trigger at the 15/17 s marks.

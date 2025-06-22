@@ -134,6 +134,12 @@ export function computePenalty() {
   const t = (Date.now() - inspectionStart) / 1000;
   if (t >= 17) penalty = 'DNF';
   else if (t >= 15) penalty = '+2';
+  else penalty = '';
+  return penalty;
+}
+
+export function getPenalty() {
+  return penalty;
 }
 
 document.body.addEventListener('keydown', e => {
