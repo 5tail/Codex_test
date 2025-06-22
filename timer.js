@@ -2,6 +2,7 @@
 
 const timerDisplay = document.getElementById('timer');
 const statusDisplay = document.getElementById('status');
+const countdownDisplay = document.getElementById('countdown');
 const scrambleDisplay = document.getElementById('scramble');
 const hideTimeCheck = document.getElementById('hideTime');
 const scrambleTypeSelect = document.getElementById('scrambleType');
@@ -16,6 +17,15 @@ let inspectionStart = 0;
 let inspectionInterval = null;
 let penalty = '';
 let scrambleType = '3';
+let waiting = true;
+
+function showPrompt() {
+  countdownDisplay.textContent = '\u8acb\u6309\u4e00\u4e0b\u7a7a\u767d\u9375\u958b\u59cb';
+  countdownDisplay.className = '';
+  scrambleDisplay.textContent = '';
+  statusDisplay.textContent = '';
+  statusDisplay.className = '';
+}
 
 function pad(n, width) {
   let s = n + '';
@@ -74,24 +84,25 @@ export function generateScramble() {
 
 export function startInspection() {
   inspectionStart = Date.now();
-  statusDisplay.textContent = '';
-  statusDisplay.className = '';
+  countdownDisplay.textContent = '';
+  countdownDisplay.className = '';
   clearInterval(inspectionInterval);
   inspectionInterval = setInterval(() => {
     const elapsed = (Date.now() - inspectionStart) / 1000;
-    const remaining = 15 - elapsed;
+    let remaining = 15 - Math.floor(elapsed);
+    if (remaining < 0) remaining = 0;
 
     if (elapsed >= 17) {
-      statusDisplay.textContent = 'DNF';
-      statusDisplay.className = 'big-red';
+      countdownDisplay.textContent = 'DNF';
+      countdownDisplay.className = 'big-red';
     } else {
-      statusDisplay.textContent = remaining.toFixed(1);
+      countdownDisplay.textContent = remaining;
       if (elapsed >= 12) {
-        statusDisplay.className = 'big-red';
+        countdownDisplay.className = 'big-red';
       } else if (elapsed >= 8) {
-        statusDisplay.className = 'big-yellow';
+        countdownDisplay.className = 'big-yellow';
       } else {
-        statusDisplay.className = '';
+        countdownDisplay.className = '';
       }
     }
   }, 100);
@@ -100,6 +111,8 @@ export function startInspection() {
 export function stopInspection() {
   clearInterval(inspectionInterval);
   inspectionInterval = null;
+  countdownDisplay.textContent = '';
+  countdownDisplay.className = '';
 }
 
 export function startTimer() {
@@ -126,19 +139,29 @@ export function stopTimer() {
   if (penalty === 'DNF') show += ' DNF';
   timerDisplay.textContent = show;
   penalty = '';
-  generateScramble();
-  startInspection();
+  waiting = true;
+  showPrompt();
 }
 
 export function computePenalty() {
   const t = (Date.now() - inspectionStart) / 1000;
   if (t >= 17) penalty = 'DNF';
   else if (t >= 15) penalty = '+2';
+  else penalty = '';
+  return penalty;
+}
+
+export function getPenalty() {
+  return penalty;
 }
 
 document.body.addEventListener('keydown', e => {
   if (e.code === 'Space' && !e.repeat) {
-    if (!holding && !timerInterval) {
+    if (waiting && !timerInterval) {
+      waiting = false;
+      generateScramble();
+      startInspection();
+    } else if (!holding && !timerInterval) {
       holding = true;
       ready = false;
       statusDisplay.textContent = '\u25A0';
@@ -159,7 +182,7 @@ document.body.addEventListener('keyup', e => {
     if (holding) {
       clearTimeout(holdTimeout);
       holding = false;
-      if (ready && !timerInterval) {
+      if (ready && !timerInterval && !waiting) {
         computePenalty();
         stopInspection();
         startTimer();
@@ -172,7 +195,9 @@ document.body.addEventListener('keyup', e => {
 });
 
 scrambleTypeSelect.addEventListener('change', () => {
-  generateScramble();
-  startInspection();
+  waiting = true;
+  showPrompt();
 });
+
+showPrompt();
 
