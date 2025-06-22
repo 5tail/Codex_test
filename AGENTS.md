@@ -24,3 +24,7 @@ This file records a summary of repository changes and a short description of eac
 - Loaded cubejs from a CDN in `index.php`.
 - Implemented `generateScramble()` using cubejs for 2x2, 3x3, and 4x4 events.
 
+
+### PR: Refactor timer script
+- Extracted all timer logic into `timer.js` as an ES module.
+- Imported `generateScramble()` and `startInspection()` in `index.php` to initialize the page.
