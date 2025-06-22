@@ -1,6 +1,6 @@
 # Cubing Timer Overview
 
-`index.php` provides a simple timer for puzzle solving with built-in scramble generation. Scrambles for 2x2–4x4 are powered by the cubejs library loaded from a CDN. Load the file through any PHP-enabled server to track your solves.
+`index.php` provides a simple timer for puzzle solving with built-in scramble generation. Scrambles for common WCA events are powered by the cubejs library loaded from a CDN. Load the file through any PHP-enabled server to track your solves.
 
 Run locally with:
 
