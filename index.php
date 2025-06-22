@@ -8,6 +8,7 @@
   #timer {font-size:60px; margin-top:40px;}
   #scramble {margin-top:20px; font-size:20px; word-wrap:break-word; width:90%; margin-left:auto; margin-right:auto;}
   #status {margin-top:10px; height:30px;}
+  #countdown {margin-top:5px; height:30px; line-height:30px;}
   .yellow {color:yellow;}
   .green {color:#0f0;}
   .big-yellow {color:yellow; font-size:40px;}
@@ -18,6 +19,7 @@
 <h1>Cubing Timer</h1>
 <div id="timer">00:00.000</div>
 <div id="status"></div>
+<div id="countdown">請按一下空白鍵開始</div>
 <div id="scramble"></div>
 <div style="margin-top:20px;">
 <label><input type="checkbox" id="hideTime"> 隱藏計時</label>
@@ -43,9 +45,7 @@
 </div>
 <script src="https://unpkg.com/cubejs/lib/cube.min.js"></script>
 <script type="module">
-import {generateScramble, startInspection} from "./timer.js";
-generateScramble();
-startInspection();
+import './timer.js';
 </script>
 </body>
 </html>
