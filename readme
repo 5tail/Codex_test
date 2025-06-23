@@ -1,11 +1,11 @@
 # Cubing Timer Overview
 
-`index.php` provides a simple timer for puzzle solving with built-in scramble generation. Scrambles for common WCA events are powered by the cubejs library loaded from a CDN. Load the file through any PHP-enabled server to track your solves.
+`index.html` provides a simple timer for puzzle solving with built-in scramble generation. Scrambles for common WCA events are powered by the cubejs library loaded from a CDN. Open the file directly or serve it through a simple static server.
 
 Run locally with:
 
 ```
-php -S localhost:8000
+npx serve
 ```
 
-Then open `http://localhost:8000/index.php` in your browser. All code and markup live in that single file for easier testing and contributions.
+Then open `http://localhost:3000/index.html` in your browser. All code and markup live in that single file for easier testing and contributions.
